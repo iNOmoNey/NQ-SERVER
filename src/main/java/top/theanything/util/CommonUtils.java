@@ -40,7 +40,6 @@ public class CommonUtils {
         while( (len = fis.read(b)) != -1){
             System.out.println(new String(b,0,len));
         }
-        System.out.println("启动成功...");
         fis.close();
     }
 

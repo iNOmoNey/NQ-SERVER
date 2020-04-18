@@ -7,6 +7,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
+import top.theanything.config.BasicConfig;
 import top.theanything.core.init.ServerInit;
 import top.theanything.util.CommonUtils;
 
@@ -31,7 +32,7 @@ public class NQ_Server {
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ServerInit());
-            ChannelFuture future = serverBootstrap.bind(Integer.valueOf(String.valueOf(utils.getValue("port")))).sync();
+            ChannelFuture future = serverBootstrap.bind(BasicConfig.port).sync();
             future.addListener(new GenericFutureListener<Future<? super Void>>() {
 
                 @Override

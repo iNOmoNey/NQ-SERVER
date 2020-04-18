@@ -38,7 +38,6 @@ public class Response {
 
 	}
 	public void sendStatic(){
-
         String uri = request.getUri();
         InputStream input = this.getClass().getClassLoader().getResourceAsStream("/");
         String path = this.getClass().getClassLoader().getResource("").getPath().substring(1) + "../../src/main/resources"+uri;
@@ -49,23 +48,15 @@ public class Response {
 			System.out.println("==============");
 			e.printStackTrace();
 		}
-
 	}
-
-
-
 	private void setContext(ChannelHandlerContext ctx) {
 		this.ctx = ctx;
 	}
-
-
 	private void sendFile(String path) throws IOException {
 		//构造Response,设置状态码 和 Http版本
 		HttpResponse response =
 				new DefaultHttpResponse(HTTP_VERSION, STATUS);
-
 		setFile(path);
-
 		RandomAccessFile raf = null;
 		try {
 			raf = new RandomAccessFile(file, "r");
