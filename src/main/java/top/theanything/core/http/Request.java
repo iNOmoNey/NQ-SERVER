@@ -6,6 +6,7 @@ import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.QueryStringDecoder;
 import io.netty.handler.codec.http.cookie.Cookie;
 import io.netty.handler.codec.http.cookie.ServerCookieDecoder;
+import top.theanything.core.enums.HttpMethod;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.List;
@@ -69,5 +70,15 @@ public class Request {
 
 	public String getUri(){
 		return fullrequest.uri();
+	}
+	public HttpMethod getMethod(){
+
+		switch (fullrequest.method().name()){
+			case "GET":
+				return HttpMethod.GET;
+			case "POST":
+				return HttpMethod.POST;
+		}
+		return null;
 	}
 }

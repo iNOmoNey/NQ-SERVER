@@ -4,7 +4,11 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.stream.ChunkedFile;
 import io.netty.util.concurrent.Future;
+import top.theanything.core.action.AbstractAction;
+import top.theanything.core.enums.HttpMethod;
+import top.theanything.util.ActionUtil;
 import java.io.*;
+import java.lang.reflect.Method;
 
 
 /**
@@ -27,16 +31,28 @@ public class Response {
 		this.request = request;
 	}
 
+	/**
+	 * 在路由信息表中存在与否判断动静态请求
+	 * 然后在分别处理
+	 */
 	public void send(){
-
-		//判断静态 还是 动态请求
-
-		//动态:
-
-		//静态:
-		sendStatic();
-
+		Method method ;
+		//在actionMap 中判断静态 还是 动态请求
+		if( (method =isDynamic(request.getMethod() , request.getUri())) != null)
+			 sendDynamic(method);
+		else
+			sendStatic();
 	}
+
+	private Method isDynamic(HttpMethod method , String uri) {
+		return ActionUtil.getMethod(method,uri);
+	}
+	public void sendDynamic(Method method){
+
+		AbstractAction action = ActionUtil.getAction(method.getDeclaringClass());
+		//TODO 调用方法
+	}
+
 	public void sendStatic(){
         String uri = request.getUri();
         InputStream input = this.getClass().getClassLoader().getResourceAsStream("/");

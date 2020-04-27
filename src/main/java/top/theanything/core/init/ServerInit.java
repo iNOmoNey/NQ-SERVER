@@ -9,13 +9,6 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 import top.theanything.core.handler.HttpServerHandler;
 import top.theanything.util.ServerScanner;
 
-
-/**
- * @param
- * @author zhou
- * @Description
- * @createTime 2020-03-20
- */
 public class ServerInit extends ChannelInitializer<SocketChannel> {
     static{
         System.err.println("服务器正在初始化...");

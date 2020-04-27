@@ -15,6 +15,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mapping {
-	//假装自己是真的Spring
-	//  hhh
+	//假装自己是真的Spring.  hhh
+
 }

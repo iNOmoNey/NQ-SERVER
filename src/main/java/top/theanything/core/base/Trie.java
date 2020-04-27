@@ -41,7 +41,7 @@ public class Trie {
 
     public Method get(String path){
          char[] chars = path.toCharArray();
-        Method value = null;
+         Method value = null;
          TrieNode temp = head;
          for(int i = 0 ; i < chars.length ; i ++) {
              if (temp.node[chars[i]] == null)

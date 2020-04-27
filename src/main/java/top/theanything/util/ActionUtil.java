@@ -1,7 +1,10 @@
 package top.theanything.util;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import top.theanything.anno.Controller;
 import top.theanything.anno.RequestMapping;
+import top.theanything.core.action.AbstractAction;
 import top.theanything.core.base.Trie;
 import top.theanything.core.enums.HttpMethod;
 
@@ -20,7 +23,9 @@ import java.util.Map;
 public class ActionUtil {
 
 	public static Map<HttpMethod, Trie> ActionMap = new HashMap<>();
-
+	public static Cache<Class,AbstractAction> actionCache = CacheBuilder.newBuilder()
+														  .maximumSize(100)
+														  .build();
 	/**
 	 * 使用{@link #ActionMap} 保存映射信息
 	 * @param classes controller包下的所有class
@@ -49,5 +54,29 @@ public class ActionUtil {
 			System.out.println("成功初始化GET请求"+ActionMap.get(HttpMethod.GET).getCount()+"个");
 		if(ActionMap.get(HttpMethod.POST) != null)
 			System.out.println("成功初始化POST请求"+ActionMap.get(HttpMethod.POST).getCount()+"个");
+	}
+
+	/**
+	 * 如果缓存中没有该action的实例 则创建一个
+	 * @param clazz 请求的方法的类
+	 * @return
+	 */
+	public static AbstractAction getAction(Class clazz){
+		try {
+			AbstractAction action;
+			if ( (action = actionCache.getIfPresent(clazz)) == null ) {
+				action = (AbstractAction) clazz.newInstance();
+				actionCache.put(clazz,action);
+			}
+			return action;
+		}catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public static Method getMethod(HttpMethod method , String uri){
+		return ActionMap.get(method).get(uri);
 	}
 }
