@@ -7,7 +7,7 @@ package top.theanything.config;
  */
 public class BasicConfig {
 	public static int port = 8080;
-	public static String path = "top/theanything/controller";
-	public static String packagePath = "top.theanything.controller.";
+	public static String path = "top/theanything/web/controller";
+	public static String packagePath = "top.theanything.web.controller.";
 
 }

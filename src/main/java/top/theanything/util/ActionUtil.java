@@ -41,7 +41,7 @@ public class ActionUtil {
 						ActionMap.put(mapping.method(), new Trie());
 					}
 					Trie trie = ActionMap.get(mapping.method());
-					System.out.println("加载   "+mapping.method()+"  "+mapping.value()+"  "+method);
+					System.out.println("    加载   "+mapping.method()+"  "+mapping.value()+"  "+method);
 					trie.insert(mapping.value(), method);
 				}
 			}

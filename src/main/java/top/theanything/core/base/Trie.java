@@ -1,7 +1,6 @@
 package top.theanything.core.base;
 
 import org.junit.Test;
-
 import java.lang.reflect.Method;
 
 /**
@@ -11,7 +10,7 @@ import java.lang.reflect.Method;
  */
 public class Trie {
 
-    private  int count;
+    private int count;
     public Trie() {
     }
     static class TrieNode{
