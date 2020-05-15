@@ -6,6 +6,7 @@ import top.theanything.config.BasicConfig;
 import top.theanything.core.action.AbstractAction;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -19,15 +20,19 @@ public class ServerScanner {
     public static List<Class> classes = new ArrayList<>();          //保存指定路径下的Controller
     public static List<String> classesName = new ArrayList<>();  // 只有class的名字，Class.forName 不要.class
     private static ServerScanner scanner = new ServerScanner();
+    private static List<Method> methods = new ArrayList<>();
 
     /**
-     * 初始化处理器映射器 {@link top.theanything.core.base.Trie}
+     * 初始化
+     * 1.处理器映射器 {@link top.theanything.core.base.Trie}
+     * 2.过滤链
      */
     public static void scaner(){
         scanner.findFile();
         scanner.scanController();
-        ActionUtil.refresh(classes);
-
+        ActionUtil.refresh(classes,methods);
+        System.err.println("=====开始构造过滤链");
+        FilterUtil.refresh(methods);
     }
 
     /**

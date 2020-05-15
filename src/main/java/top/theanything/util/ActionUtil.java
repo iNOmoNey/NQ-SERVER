@@ -2,7 +2,6 @@ package top.theanything.util;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import top.theanything.anno.Controller;
 import top.theanything.anno.RequestMapping;
 import top.theanything.core.action.AbstractAction;
 import top.theanything.core.base.Trie;
@@ -30,7 +29,7 @@ public class ActionUtil {
 	 * 使用{@link #ActionMap} 保存映射信息
 	 * @param classes controller包下的所有class
 	 */
-	public static void refresh(List<Class> classes){
+	public static void refresh(List<Class> classes , List<Method> methodList){
 		classes.forEach(e -> {
 			System.out.println("扫描" + e.getName());
 			Method[] methods = e.getMethods();
@@ -42,6 +41,7 @@ public class ActionUtil {
 					}
 					Trie trie = ActionMap.get(mapping.method());
 					System.out.println("    加载   "+mapping.method()+"  "+mapping.value()+"  "+method);
+					methodList.add(method);
 					trie.insert(mapping.value(), method);
 				}
 			}

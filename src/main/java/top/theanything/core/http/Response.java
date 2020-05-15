@@ -8,7 +8,10 @@ import io.netty.handler.stream.ChunkedFile;
 import io.netty.util.concurrent.Future;
 import top.theanything.core.action.AbstractAction;
 import top.theanything.core.enums.HttpMethod;
+import top.theanything.core.filter.AbstractFilter;
 import top.theanything.util.ActionUtil;
+import top.theanything.util.FilterUtil;
+
 import java.io.*;
 import java.lang.reflect.Method;
 
@@ -57,8 +60,13 @@ public class Response {
 	}
 	public void sendDynamic(Method method){
 
+		AbstractFilter chain = FilterUtil.getFilterChain(method);
+		if (chain != null){
+			chain.doChain(request , this);
+		}
+
 		AbstractAction action = ActionUtil.getAction(method.getDeclaringClass());
-		//TODO 调用方法
+		//TODO
 		action.doAction( request, this , method , action);
 		sendText();
 	}
