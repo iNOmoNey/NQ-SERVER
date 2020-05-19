@@ -13,7 +13,7 @@ public class DefalutFilter extends AbstractFilter{
 
 	@Override
 	protected boolean doFilter(Request request, Response response) {
-		System.out.println("我是过滤器1，我被执行了");
-		return false;
+		System.out.println("我是过滤器1");
+		return true;
 	}
 }

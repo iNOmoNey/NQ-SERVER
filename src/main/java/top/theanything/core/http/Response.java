@@ -4,14 +4,17 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.*;
+import io.netty.handler.codec.http.cookie.Cookie;
 import io.netty.handler.stream.ChunkedFile;
 import io.netty.util.concurrent.Future;
+import top.theanything.config.BasicConfig;
 import top.theanything.core.action.AbstractAction;
 import top.theanything.core.enums.HttpMethod;
 import top.theanything.core.filter.AbstractFilter;
 import top.theanything.util.ActionUtil;
 import top.theanything.util.FilterUtil;
 
+import javax.rmi.CORBA.Util;
 import java.io.*;
 import java.lang.reflect.Method;
 
@@ -27,14 +30,18 @@ public class Response {
 
 	private final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;
 	private final int CHUNK_SIZE = 8192;
-	private String DEFAULT_CONTENT_TYPE = "text/html;charset=UTF-8";
+	private final String DEFAULT_CONTENT_TYPE = "text/html;charset=UTF-8";
 	private HttpHeaders headers = new DefaultHttpHeaders();
 	private HttpResponseStatus STATUS = HttpResponseStatus.OK;   //没有异常就是200的状态码
 	private File file ;
 	private ChannelHandlerContext ctx ;
 	private Request request;
 	private ByteBuf content = Unpooled.EMPTY_BUFFER;
-
+	public  static String PREFIX_PATH ;
+	{
+		PREFIX_PATH  = this.getClass().getClassLoader().getResource("")
+														.getPath().substring(1) + "../../src/main/resources";
+	}
 
 
 	public Response(ChannelHandlerContext ctx,Request request) {
@@ -75,17 +82,23 @@ public class Response {
 	 * 静态资源的发送
 	 */
 	public void sendStatic(){
-        String uri = request.getUri();
-        InputStream input = this.getClass().getClassLoader().getResourceAsStream("/");
-        String path = this.getClass().getClassLoader().getResource("").getPath().substring(1) + "../../src/main/resources"+uri;
+		String uri ;
 		try {
-			sendFile(path);
+			uri = request.getUri();
+			sendFile(PREFIX_PATH+uri);
 		} catch (IOException e) {
-			System.out.println("文件发送遇到异常");
-			System.out.println("==============");
-			e.printStackTrace();
+			uri = BasicConfig.notFoundPath;
+			try {
+				sendFile(PREFIX_PATH+uri);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
 		}
+
 	}
+
+
+
 	private void setContext(ChannelHandlerContext ctx) {
 		this.ctx = ctx;
 	}
@@ -116,7 +129,7 @@ public class Response {
 		setHeader(HttpHeaderNames.LOCATION.toString(), url);
 		sendText();
 	}
-	public String fileToContentType(String fileName){
+	public String fileToContentType(String fileName) throws FileNotFoundException {
 		if (fileName.endsWith(".html")) {
 			return "text/html;charset=utf8";
 		} else if (fileName.endsWith(".png")) {
@@ -130,19 +143,15 @@ public class Response {
 		}else if(fileName.endsWith(".ico")){
 			return "image/x-icon";
 		}
-		throw new NullPointerException("没有对应的MimeType:"+fileName);
+		throw new FileNotFoundException("路径错误");
 	}
-	private void sendFile(String path) throws IOException {
+	public void sendFile(String path) throws IOException {
 		//构造Response,设置状态码 和 Http版本
 		//不要用成DefaultFullHttpResponse
 		HttpResponse back = new DefaultHttpResponse(HTTP_VERSION, STATUS);
 		setFile(path);
 		RandomAccessFile raf = null;
-		try {
-			raf = new RandomAccessFile(file, "r");
-		} catch (FileNotFoundException e) {
-			//TODO 返回404 文件找不到
-		}
+		raf = new RandomAccessFile(file, "r");
 		//设置header
 		// 1、MimeType
 		// 2、Length
@@ -168,5 +177,8 @@ public class Response {
 		setContentType(DEFAULT_CONTENT_TYPE);
 		back.headers().set(headers);
 		ctx.writeAndFlush(back);
+	}
+	public  void addCookie(Cookie cookie){
+		setHeader("Set-Cookie",cookie);
 	}
 }

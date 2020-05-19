@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>NQ-Server·登录</title>
+
+<link rel="stylesheet" href="css/style.css">
+<script >
+    function submit() {
+        document.getElementById("login_form").submit();
+    }
+</script>
+</head>
+<body>
+
+<div class="login-box">
+  <h2>登录表单</h2>
+  <form id="login_form" action="http://localhost:8080/login" method="post">
+    <div class="user-box">
+      <input type="text" name="username">
+      <label>用户名 (111)</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" >
+      <label>密码 (111)</label>
+    </div>
+&nbsp;
+      <a type="submit" onclick="submit()">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          登录
+      </a>
+
+
+  </form>
+</div>
+  
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#ffffff">
+</div>
+</body>
+</html>

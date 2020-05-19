@@ -67,6 +67,11 @@ public class Request {
 			}
 		}
 	}
+
+	public Map<String, Cookie> getCookies() {
+		return cookies;
+	}
+
 	private void setParams(QueryStringDecoder params) {
 		Set<Map.Entry<String, List<String>>> param = params.parameters().entrySet();
 		param.forEach(p->{   //如果参数只有一个 则提取为String 否则直接将list直接方式params
@@ -74,7 +79,7 @@ public class Request {
 			this.params.put(p.getKey() , list.size() == 1 ? list.get(0) : list) ;
 		});
 		//如果是POST请求，提取请求体里面的参数
-		if(fullrequest.method().name() == HttpMethod.POST.name()){
+		if(fullrequest.method().name().equals(HttpMethod.POST.name()) ){
 			HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(fullrequest);
 			decoder.offer(fullrequest);
 			List<InterfaceHttpData> parmList = decoder.getBodyHttpDatas();

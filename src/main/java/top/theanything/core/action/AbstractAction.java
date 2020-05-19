@@ -1,8 +1,10 @@
 package top.theanything.core.action;
 
+import top.theanything.config.BasicConfig;
 import top.theanything.core.http.Request;
 import top.theanything.core.http.Response;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -23,13 +25,19 @@ public  class AbstractAction  {
 				return;
 			}
 			response.setContent(result);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			doErr(response,e);
 		}
 	}
-	public void doErr(){
-
+	public void doErr(Response response , Exception e){
+		if(e instanceof InvocationTargetException){
+			try {
+				response.sendFile(response.PREFIX_PATH + BasicConfig.badRequestPath);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}else{
+			System.err.println(e.getMessage());
+		}
 	}
 }

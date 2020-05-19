@@ -1,5 +1,7 @@
 package top.theanything.web.controller.User;
 
+import io.netty.handler.codec.http.cookie.Cookie;
+import io.netty.handler.codec.http.cookie.DefaultCookie;
 import top.theanything.anno.Controller;
 import top.theanything.anno.Filter;
 import top.theanything.anno.RequestMapping;
@@ -8,6 +10,7 @@ import top.theanything.core.enums.HttpMethod;
 import top.theanything.core.http.Request;
 import top.theanything.core.http.Response;
 import top.theanything.util.JsonUtil;
+import top.theanything.util.JwtUtil;
 import top.theanything.web.filters.DefalutFilter;
 import top.theanything.web.filters.LoginFilter;
 import top.theanything.web.pojo.User;
@@ -37,12 +40,17 @@ public class UserController extends AbstractAction {
 	}
 
 	@RequestMapping(value = "/login",method = HttpMethod.POST)
-	@Filter(DefalutFilter.class)
 	public String login(Request req , Response response){
+		String username = (String) req.getParams().get("username");
+		String password = (String) req.getParams().get("password");
 
-
-
-		return "登录成功";
+		if(user.getOrDefault(username , null).equals(password) ){
+			String token = JwtUtil.create(username);
+			Cookie cookie = new DefaultCookie("loginInfo", token);
+			response.addCookie(cookie);
+			return "redirect:http://localhost:8080/getUser";
+		}
+		return "登录失败";
 	}
 
 }
