@@ -1,6 +1,5 @@
-package top.theanything.util;
+package top.theanything.utils;
 
-import org.junit.Test;
 import top.theanything.anno.Controller;
 import top.theanything.config.BasicConfig;
 import top.theanything.core.action.AbstractAction;

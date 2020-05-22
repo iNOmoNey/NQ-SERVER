@@ -3,6 +3,7 @@ package top.theanything.core.action;
 import top.theanything.config.BasicConfig;
 import top.theanything.core.http.Request;
 import top.theanything.core.http.Response;
+import top.theanything.web.error.ShortPathNotFoundException;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -33,6 +34,12 @@ public  class AbstractAction  {
 		if(e instanceof InvocationTargetException){
 			try {
 				response.sendFile(response.PREFIX_PATH + BasicConfig.badRequestPath);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}else if (e instanceof ShortPathNotFoundException){  //短链接没找到
+			try {
+				response.sendFile(response.PREFIX_PATH + BasicConfig.notFoundPath);
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}

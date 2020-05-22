@@ -8,8 +8,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import top.theanything.config.BasicConfig;
-import top.theanything.core.init.ServerInit;
-import top.theanything.util.CommonUtils;
+import top.theanything.utils.CommonUtils;
 
 /**
  * @param
@@ -40,7 +39,6 @@ public class NQ_Server {
                         utils.printSuccess();
                 }
             });
-
         }catch (Exception e){
             System.out.println("有异常");
             e.printStackTrace();

@@ -18,7 +18,7 @@ public abstract class AbstractFilter {
 	 public void doChain(Request request, Response response){
 	 	if( doFilter(request,response) == false) {
 		    try {
-			    response.sendFile(response.PREFIX_PATH+ BasicConfig.badRequestPath);
+			    response.sendFile(response.PREFIX_PATH+ BasicConfig.forbiddenPath);
 		    } catch (IOException e) {
 			    e.printStackTrace();
 		    }

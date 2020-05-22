@@ -1,7 +1,7 @@
 package top.theanything.web.response;
 
 
-import top.theanything.util.JsonUtil;
+import top.theanything.utils.JsonUtil;
 
 public class Result<T>{
     //TODO 通用返回

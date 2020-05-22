@@ -11,14 +11,11 @@ import top.theanything.config.BasicConfig;
 import top.theanything.core.action.AbstractAction;
 import top.theanything.core.enums.HttpMethod;
 import top.theanything.core.filter.AbstractFilter;
-import top.theanything.util.ActionUtil;
-import top.theanything.util.FilterUtil;
+import top.theanything.utils.ActionUtil;
+import top.theanything.utils.FilterUtil;
 
-import javax.rmi.CORBA.Util;
 import java.io.*;
 import java.lang.reflect.Method;
-
-import static com.sun.media.jfxmedia.locator.Locator.DEFAULT_CONTENT_TYPE;
 
 
 /**
@@ -49,14 +46,16 @@ public class Response {
 		this.request = request;
 	}
 
+
 	/**
 	 * 在路由信息表中存在与否判断动静态请求
 	 * 然后在分别处理
 	 */
+
 	public void send(){
 		Method method ;
 		//在actionMap 中判断静态 还是 动态请求
-		if( (method =isDynamic(request.getMethod() , request.getUri())) != null)
+		if( (method =isDynamic(request.getMethod(), request.getUri().split("\\?")[0]) ) != null)
 			 sendDynamic(method);
 		else
 			sendStatic();
@@ -96,9 +95,6 @@ public class Response {
 		}
 
 	}
-
-
-
 	private void setContext(ChannelHandlerContext ctx) {
 		this.ctx = ctx;
 	}

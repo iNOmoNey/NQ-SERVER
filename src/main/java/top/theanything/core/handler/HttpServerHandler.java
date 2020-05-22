@@ -18,6 +18,4 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
             Response response = new Response(ctx,request);
             response.send();
     }
-
-
 }

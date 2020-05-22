@@ -1,4 +1,4 @@
-package top.theanything.util;
+package top.theanything.utils;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

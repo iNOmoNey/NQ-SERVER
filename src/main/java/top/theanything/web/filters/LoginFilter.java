@@ -5,7 +5,7 @@ import top.theanything.config.BasicConfig;
 import top.theanything.core.filter.AbstractFilter;
 import top.theanything.core.http.Request;
 import top.theanything.core.http.Response;
-import top.theanything.util.JwtUtil;
+import top.theanything.utils.JwtUtil;
 
 import java.util.Map;
 

@@ -1,6 +1,4 @@
-package top.theanything.util;
-
-import org.junit.Test;
+package top.theanything.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

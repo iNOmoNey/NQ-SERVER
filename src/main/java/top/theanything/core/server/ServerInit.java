@@ -1,4 +1,4 @@
-package top.theanything.core.init;
+package top.theanything.core.server;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -7,7 +7,7 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import top.theanything.core.handler.HttpServerHandler;
-import top.theanything.util.ServerScanner;
+import top.theanything.utils.ServerScanner;
 
 public class ServerInit extends ChannelInitializer<SocketChannel> {
     static{

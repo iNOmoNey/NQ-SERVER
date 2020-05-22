@@ -1,4 +1,4 @@
-package top.theanything.web.controller.User;
+package top.theanything.web.controller.user;
 
 import io.netty.handler.codec.http.cookie.Cookie;
 import io.netty.handler.codec.http.cookie.DefaultCookie;
@@ -9,8 +9,8 @@ import top.theanything.core.action.AbstractAction;
 import top.theanything.core.enums.HttpMethod;
 import top.theanything.core.http.Request;
 import top.theanything.core.http.Response;
-import top.theanything.util.JsonUtil;
-import top.theanything.util.JwtUtil;
+import top.theanything.utils.JsonUtil;
+import top.theanything.utils.JwtUtil;
 import top.theanything.web.filters.DefalutFilter;
 import top.theanything.web.filters.LoginFilter;
 import top.theanything.web.pojo.User;
@@ -32,12 +32,7 @@ public class UserController extends AbstractAction {
 		user.put("222","222");
 		user.put("333","333");
 	}
-	@RequestMapping(value = "/getUser",method = HttpMethod.GET)
-	@Filter({DefalutFilter.class,LoginFilter.class})
-	public String getUser(Request req , Response response){
-		User user = new User("周斌", 21, "男", "敲代码");
-		return new Result<User>(user, JsonUtil.ResultGenerator.OK).toString();
-	}
+
 
 	@RequestMapping(value = "/login",method = HttpMethod.POST)
 	public String login(Request req , Response response){
@@ -52,5 +47,17 @@ public class UserController extends AbstractAction {
 		}
 		return "登录失败";
 	}
+
+
+
+	@RequestMapping(value = "/getUser",method = HttpMethod.GET)
+	@Filter({DefalutFilter.class,LoginFilter.class})
+	public String getUser(Request req , Response response){
+		User user = new User("周斌", 21, "男", "敲代码");
+		return new Result<User>(user, JsonUtil.ResultGenerator.OK).toString();
+	}
+
+
+
 
 }

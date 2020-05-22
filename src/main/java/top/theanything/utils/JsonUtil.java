@@ -1,4 +1,4 @@
-package top.theanything.util;
+package top.theanything.utils;
 
 import org.json.JSONObject;
 

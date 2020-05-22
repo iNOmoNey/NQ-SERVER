@@ -101,6 +101,7 @@ public class Request {
 	public String getUri(){
 		return fullrequest.uri();
 	}
+
 	public HttpMethod getMethod(){
 
 		switch (fullrequest.method().name()){
