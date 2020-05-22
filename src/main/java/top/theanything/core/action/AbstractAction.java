@@ -21,6 +21,7 @@ public  class AbstractAction  {
 	public void doAction(Request req, Response response , Method method , AbstractAction action){
 		try {
 			String result = (String) method.invoke(action, req,response);
+			if(result == null) return;
 			if(result.startsWith("redirect:")){  //如果是跳转 后面的流程不用管了
 				response.doRedirect( result.substring( result.indexOf(":")+1) );
 				return;
@@ -44,7 +45,7 @@ public  class AbstractAction  {
 				ex.printStackTrace();
 			}
 		}else{
-			System.err.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }

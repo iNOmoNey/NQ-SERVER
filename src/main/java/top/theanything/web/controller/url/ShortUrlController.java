@@ -26,6 +26,7 @@ public class ShortUrlController extends AbstractAction {
 	@RequestMapping(value = "/shortUrl")
 	public void shortUrl(Request request , Response response) throws IOException {
 		response.sendFile(response.PREFIX_PATH + BasicConfig.shortUrlPath);
+		return;
 	}
 
 	/**

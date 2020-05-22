@@ -37,7 +37,7 @@ public class ShortUrlService {
 		Set<Map.Entry<String, String>> entries = urlCache.asMap().entrySet();
 		for (Map.Entry<String, String> map : entries){
 			if( map.getValue().equals(orgUrl) ){
-				return BasicConfig.doMain+map.getKey();
+				return BasicConfig.doMain+"?p="+map.getKey();
 			}
 		}
 		//获取短链域名

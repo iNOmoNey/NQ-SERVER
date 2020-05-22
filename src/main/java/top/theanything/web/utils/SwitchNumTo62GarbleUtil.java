@@ -7,7 +7,6 @@ import java.util.Stack;
  */
 public class SwitchNumTo62GarbleUtil {
     private static char[] charSet = "LBClqO43AIbTMDy8G1eVZmF0hutRkzXdQ6wNfiKEJaxWHPSg57rj9nosY2vUcp".toCharArray(); //乱序（混淆）
-
     /**
      * 将10进制转化为62进制
      *
@@ -34,8 +33,6 @@ public class SwitchNumTo62GarbleUtil {
 
         return temp0.toString() + result.toString();
     }
-
-
     /**
      * 将62进制转换成10进制数
      *
@@ -63,15 +60,6 @@ public class SwitchNumTo62GarbleUtil {
             cnt++;
         }
         return String.format("%08d", decimal);
-    }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        System.out.println("62System=" + convert10to62(System.currentTimeMillis(), 12));
-        System.out.println("62System=" + convert10to62(Integer.parseInt("35174605"), 6));
-        System.out.println("10System=" + convertBase62ToDecimal("2NaWL"));
     }
 
 }
