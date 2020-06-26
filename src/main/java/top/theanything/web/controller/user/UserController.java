@@ -5,6 +5,7 @@ import io.netty.handler.codec.http.cookie.DefaultCookie;
 import top.theanything.anno.Controller;
 import top.theanything.anno.Filter;
 import top.theanything.anno.RequestMapping;
+import top.theanything.config.BasicConfig;
 import top.theanything.core.action.AbstractAction;
 import top.theanything.core.enums.HttpMethod;
 import top.theanything.core.http.Request;
@@ -15,6 +16,8 @@ import top.theanything.web.filters.DefalutFilter;
 import top.theanything.web.filters.LoginFilter;
 import top.theanything.web.pojo.User;
 import top.theanything.web.response.Result;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +49,12 @@ public class UserController extends AbstractAction {
 			return "redirect:http://localhost:8080/getUser";
 		}
 		return "登录失败";
+	}
+
+	@RequestMapping(value = "/login",method = HttpMethod.GET)
+	public void loginPage(Request req , Response response) throws IOException {
+		response.sendFile(response.PREFIX_PATH+BasicConfig.loginPath);
+		return ;
 	}
 
 

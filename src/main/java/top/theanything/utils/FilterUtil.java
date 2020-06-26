@@ -23,6 +23,7 @@ public class FilterUtil {
 	 * @param methods
 	 */
 	public static void refresh(List<Method> methods){
+		System.err.println("=====开始扫描过滤器=====");
 		methods.forEach( method ->{
 			AbstractFilter abstractFilter = null;
 			Filter filters = method.getAnnotation(Filter.class);
@@ -34,10 +35,11 @@ public class FilterUtil {
 						if(abstractFilter == null){
 							abstractFilter = (AbstractFilter) f.newInstance();
 							filterMap.put(method,abstractFilter);   //method 和 Filter执行链对应
-							System.out.println(method.getName()+" 添加过滤器 "+f.getName());
+							System.out.println(method.getName()+"()"+" 添加过滤器 "+f.getName());
 						}else{
 							abstractFilter.setNext((AbstractFilter) f.newInstance());
 							abstractFilter = abstractFilter.getNext();
+							System.out.println(method.getName()+"()"+" 添加过滤器 "+f.getName());
 						}
 					} catch (InstantiationException e) {
 						e.printStackTrace();

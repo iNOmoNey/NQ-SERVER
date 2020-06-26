@@ -22,7 +22,7 @@ public class Trie {
         }
     }
 
-    private static TrieNode head = new TrieNode(); //保存头结点
+    private TrieNode head = new TrieNode(); //保存头结点
 
     public void insert(String path,Method method){
         char[] chars = path.toCharArray();

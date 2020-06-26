@@ -27,13 +27,9 @@ public class ServerScanner {
      * 2.过滤链
      */
     public static void scaner(){
-        System.out.println("00000000000");
         scanner.findFile();
-        System.out.println("11111111111");
         scanner.scanController();
-        System.out.println("2222222222222");
         ActionUtil.refresh(classes,methods);
-        System.err.println("=====开始构造过滤链");
         FilterUtil.refresh(methods);
     }
 

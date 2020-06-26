@@ -16,6 +16,9 @@ public class BasicConfig {
 	public static String forbiddenPath = "/static/forbidden.html";
 	public static String badRequestPath = "/static/badRequest.html";
 	public static String shortUrlPath = "/static/shortUrl.html";
+	public static String loginPath = "/static/login.html";
+	public static String indexPath = "/static/index.html";
+
 
 	public static String doMain = "http://localhost:8080/s";
 
