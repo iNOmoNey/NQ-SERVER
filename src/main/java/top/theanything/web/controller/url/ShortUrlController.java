@@ -4,9 +4,9 @@ import top.theanything.core.anno.Controller;
 import top.theanything.core.anno.RequestMapping;
 import top.theanything.config.BasicConfig;
 import top.theanything.core.action.AbstractAction;
+import top.theanything.core.error.ShortPathNotFoundException;
 import top.theanything.core.http.Request;
 import top.theanything.core.http.Response;
-import top.theanything.web.error.ShortPathNotFoundException;
 import top.theanything.web.service.ShortUrlService;
 
 import java.io.IOException;
@@ -52,7 +52,7 @@ public class ShortUrlController extends AbstractAction {
 	 * @throws ShortPathNotFoundException  没有该短链接
 	 */
 	@RequestMapping(value = "/s") // Http请求默认设置为GET
-	public String redirectReal(Request request , Response response) throws ShortPathNotFoundException{
+	public String redirectReal(Request request , Response response) throws ShortPathNotFoundException {
 		String  KeyID = (String) request.getParams().get("p");
 
 		String realPath ;

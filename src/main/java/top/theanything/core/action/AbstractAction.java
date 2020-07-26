@@ -1,10 +1,9 @@
 package top.theanything.core.action;
 
 import top.theanything.config.BasicConfig;
+import top.theanything.core.error.ShortPathNotFoundException;
 import top.theanything.core.http.Request;
 import top.theanything.core.http.Response;
-import top.theanything.web.error.ShortPathNotFoundException;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

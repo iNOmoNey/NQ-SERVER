@@ -23,7 +23,7 @@ public class FilterUtil {
 	 * @param methods
 	 */
 	public static void refresh(List<Method> methods){
-		System.err.println("=====开始扫描过滤器=====");
+		System.out.println("===================开始扫描过滤器===================");
 		methods.forEach( method ->{
 			AbstractFilter abstractFilter = null;
 			Filter filters = method.getAnnotation(Filter.class);
