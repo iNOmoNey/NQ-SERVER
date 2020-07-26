@@ -1,4 +1,4 @@
-package top.theanything.anno;
+package top.theanything.core.anno;
 
 import top.theanything.core.filter.AbstractFilter;
 

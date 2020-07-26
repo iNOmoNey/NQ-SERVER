@@ -1,4 +1,4 @@
-package top.theanything.anno;
+package top.theanything.core.anno;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

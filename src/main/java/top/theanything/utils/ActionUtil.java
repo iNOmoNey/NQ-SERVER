@@ -2,7 +2,7 @@ package top.theanything.utils;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import top.theanything.anno.RequestMapping;
+import top.theanything.core.anno.RequestMapping;
 import top.theanything.core.action.AbstractAction;
 import top.theanything.core.base.Trie;
 import top.theanything.core.enums.HttpMethod;

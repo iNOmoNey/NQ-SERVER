@@ -1,6 +1,6 @@
 package top.theanything.utils;
 
-import top.theanything.anno.Controller;
+import top.theanything.core.anno.Controller;
 import top.theanything.config.BasicConfig;
 import top.theanything.core.action.AbstractAction;
 

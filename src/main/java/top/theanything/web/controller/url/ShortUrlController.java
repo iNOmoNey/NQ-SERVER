@@ -1,7 +1,7 @@
 package top.theanything.web.controller.url;
 
-import top.theanything.anno.Controller;
-import top.theanything.anno.RequestMapping;
+import top.theanything.core.anno.Controller;
+import top.theanything.core.anno.RequestMapping;
 import top.theanything.config.BasicConfig;
 import top.theanything.core.action.AbstractAction;
 import top.theanything.core.http.Request;
