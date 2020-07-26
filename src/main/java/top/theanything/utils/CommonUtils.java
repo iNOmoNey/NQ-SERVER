@@ -39,6 +39,9 @@ public class CommonUtils {
             System.out.println(new String(b,0,len));
         }
         fis.close();
+        System.out.println("启动成功！");
+        System.out.println("POST请求测试:http://localhost/login");
+        System.out.println("挂载的网站:http://localhost/shortUrl");
     }
 
     public static CommonUtils getInstance(){
