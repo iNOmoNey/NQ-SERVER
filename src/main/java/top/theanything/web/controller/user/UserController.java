@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  * @author zhou
- * @Description  测试子包扫描情况
+ * @Description  用户登录相关
  * @createTime 2020-04-13
  */
 @Controller
@@ -46,7 +46,7 @@ public class UserController extends AbstractAction {
 			String token = JwtUtil.create(username);
 			Cookie cookie = new DefaultCookie("loginInfo", token);
 			response.addCookie(cookie);
-			return "redirect:http://localhost:8080/getUser";
+			return "redirect:http://localhost/getUser";
 		}
 		return "登录失败";
 	}

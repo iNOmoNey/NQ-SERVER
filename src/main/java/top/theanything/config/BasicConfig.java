@@ -6,7 +6,7 @@ package top.theanything.config;
  * @createTime 2020-04-11
  */
 public class BasicConfig {
-	public static int port = 8080;
+	public static int port = 80;
 	public static String path = "top/theanything/web/controller";
 	public static String packagePath = "top.theanything.web.controller.";
 	public static String signingKey = "inOmOney";
@@ -20,7 +20,7 @@ public class BasicConfig {
 	public static String indexPath = "/static/index.html";
 
 
-	public static String doMain = "http://localhost:8080/s";
+	public static String doMain = "http://localhost/s";
 
 
 }
