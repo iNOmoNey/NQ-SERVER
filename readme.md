@@ -2,7 +2,7 @@
 
 #### 部署的应用
 
-[GET请求](http://nq.theanything.top)        [POST请求](http://nq.theanything.top/login)      [短链接服务器](http://nq.theanything.top/shortUrl)
+[GET请求](http://nq.zhb.cool)        [POST请求](http://nq.zhb.cool/login)      [短链接服务器](http://nq.zhb.cool/shortUrl)
 
 #### 介绍
 
@@ -69,8 +69,8 @@ core模块为服务器核心模块，其余部分为对业务逻辑的封装。�
 
 #### 挂载的Web页面
 
-- [登录页面](http://nq.theanything.top/login)：登录成功会使用[JWT]( https://jwt.io/ )生成Token存进Cookie。对于没有登录的浏览器访问[查看用户信息](http://nq.theanything.top/getUser)请求会被拦截。
-- [短链接服务器](http://nq.theanything.top/shortUrl)：长链接地址变短链接。（域名较长...所以生成的短链接也不是很短...
+- [登录页面](http://nq.zhb.cool/login)：登录成功会使用[JWT]( https://jwt.io/ )生成Token存进Cookie。对于没有登录的浏览器访问[查看用户信息](http://nq.zhb.cool/getUser)请求会被拦截。
+- [短链接服务器](http://nq.zhb.cool/shortUrl)：长链接地址变短链接。（域名较长...所以生成的短链接也不是很短...
 
 
 
